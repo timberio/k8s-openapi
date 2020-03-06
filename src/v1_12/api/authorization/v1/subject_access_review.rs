@@ -33,18 +33,14 @@ impl SubjectAccessReview {
         body: &crate::api::authorization::v1::SubjectAccessReview,
         optional: crate::CreateOptional<'_>,
     ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<crate::CreateResponse<Self>>), crate::RequestError> {
-        let __url = "/apis/authorization.k8s.io/v1/subjectaccessreviews?".to_owned();
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        optional.__serialize(&mut __query_pairs);
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::post(__url);
-        let __body = serde_json::to_vec(body).map_err(crate::RequestError::Json)?;
-        let __request = __request.header(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static("application/json"));
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __url = "/apis/authorization.k8s.io/v1/subjectaccessreviews?";
+        let __request = crate::__build_request2(
+            crate::http::Method::POST,
+            __url.to_owned(),
+            &mut |__query_pairs| optional.__serialize(__query_pairs),
+            Some(("application/json", body)),
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 

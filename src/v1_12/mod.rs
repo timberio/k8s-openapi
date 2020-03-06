@@ -54,14 +54,14 @@ pub mod kube_aggregator;
 #[cfg(feature = "api")]
 pub fn get_api_versions(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAPIVersionsResponse>), crate::RequestError> {
-    let __url = "/apis/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAPIVersionsResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_api_versions`]
@@ -110,14 +110,14 @@ impl crate::Response for GetAPIVersionsResponse {
 #[cfg(feature = "api")]
 pub fn get_admissionregistration_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAdmissionregistrationAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/admissionregistration.k8s.io/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/admissionregistration.k8s.io/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAdmissionregistrationAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_admissionregistration_api_group`]
@@ -166,14 +166,14 @@ impl crate::Response for GetAdmissionregistrationAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_admissionregistration_v1alpha1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAdmissionregistrationV1alpha1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/admissionregistration.k8s.io/v1alpha1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/admissionregistration.k8s.io/v1alpha1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAdmissionregistrationV1alpha1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_admissionregistration_v1alpha1_api_resources`]
@@ -222,14 +222,14 @@ impl crate::Response for GetAdmissionregistrationV1alpha1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_admissionregistration_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAdmissionregistrationV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/admissionregistration.k8s.io/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/admissionregistration.k8s.io/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAdmissionregistrationV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_admissionregistration_v1beta1_api_resources`]
@@ -278,14 +278,14 @@ impl crate::Response for GetAdmissionregistrationV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_apiextensions_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetApiextensionsAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/apiextensions.k8s.io/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/apiextensions.k8s.io/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetApiextensionsAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_apiextensions_api_group`]
@@ -334,14 +334,14 @@ impl crate::Response for GetApiextensionsAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_apiextensions_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetApiextensionsV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/apiextensions.k8s.io/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/apiextensions.k8s.io/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetApiextensionsV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_apiextensions_v1beta1_api_resources`]
@@ -390,14 +390,14 @@ impl crate::Response for GetApiextensionsV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_apiregistration_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetApiregistrationAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/apiregistration.k8s.io/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/apiregistration.k8s.io/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetApiregistrationAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_apiregistration_api_group`]
@@ -446,14 +446,14 @@ impl crate::Response for GetApiregistrationAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_apiregistration_v1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetApiregistrationV1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/apiregistration.k8s.io/v1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/apiregistration.k8s.io/v1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetApiregistrationV1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_apiregistration_v1_api_resources`]
@@ -502,14 +502,14 @@ impl crate::Response for GetApiregistrationV1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_apiregistration_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetApiregistrationV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/apiregistration.k8s.io/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/apiregistration.k8s.io/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetApiregistrationV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_apiregistration_v1beta1_api_resources`]
@@ -558,14 +558,14 @@ impl crate::Response for GetApiregistrationV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_apps_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAppsAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/apps/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/apps/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAppsAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_apps_api_group`]
@@ -614,14 +614,14 @@ impl crate::Response for GetAppsAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_apps_v1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAppsV1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/apps/v1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/apps/v1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAppsV1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_apps_v1_api_resources`]
@@ -670,14 +670,14 @@ impl crate::Response for GetAppsV1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_apps_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAppsV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/apps/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/apps/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAppsV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_apps_v1beta1_api_resources`]
@@ -726,14 +726,14 @@ impl crate::Response for GetAppsV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_apps_v1beta2_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAppsV1beta2APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/apps/v1beta2/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/apps/v1beta2/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAppsV1beta2APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_apps_v1beta2_api_resources`]
@@ -782,14 +782,14 @@ impl crate::Response for GetAppsV1beta2APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_authentication_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAuthenticationAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/authentication.k8s.io/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/authentication.k8s.io/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAuthenticationAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_authentication_api_group`]
@@ -838,14 +838,14 @@ impl crate::Response for GetAuthenticationAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_authentication_v1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAuthenticationV1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/authentication.k8s.io/v1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/authentication.k8s.io/v1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAuthenticationV1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_authentication_v1_api_resources`]
@@ -894,14 +894,14 @@ impl crate::Response for GetAuthenticationV1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_authentication_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAuthenticationV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/authentication.k8s.io/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/authentication.k8s.io/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAuthenticationV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_authentication_v1beta1_api_resources`]
@@ -950,14 +950,14 @@ impl crate::Response for GetAuthenticationV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_authorization_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAuthorizationAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/authorization.k8s.io/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/authorization.k8s.io/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAuthorizationAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_authorization_api_group`]
@@ -1006,14 +1006,14 @@ impl crate::Response for GetAuthorizationAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_authorization_v1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAuthorizationV1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/authorization.k8s.io/v1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/authorization.k8s.io/v1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAuthorizationV1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_authorization_v1_api_resources`]
@@ -1062,14 +1062,14 @@ impl crate::Response for GetAuthorizationV1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_authorization_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAuthorizationV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/authorization.k8s.io/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/authorization.k8s.io/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAuthorizationV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_authorization_v1beta1_api_resources`]
@@ -1118,14 +1118,14 @@ impl crate::Response for GetAuthorizationV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_autoscaling_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAutoscalingAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/autoscaling/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/autoscaling/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAutoscalingAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_autoscaling_api_group`]
@@ -1174,14 +1174,14 @@ impl crate::Response for GetAutoscalingAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_autoscaling_v1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAutoscalingV1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/autoscaling/v1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/autoscaling/v1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAutoscalingV1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_autoscaling_v1_api_resources`]
@@ -1230,14 +1230,14 @@ impl crate::Response for GetAutoscalingV1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_autoscaling_v2beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAutoscalingV2beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/autoscaling/v2beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/autoscaling/v2beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAutoscalingV2beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_autoscaling_v2beta1_api_resources`]
@@ -1286,14 +1286,14 @@ impl crate::Response for GetAutoscalingV2beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_autoscaling_v2beta2_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetAutoscalingV2beta2APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/autoscaling/v2beta2/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/autoscaling/v2beta2/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetAutoscalingV2beta2APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_autoscaling_v2beta2_api_resources`]
@@ -1342,14 +1342,14 @@ impl crate::Response for GetAutoscalingV2beta2APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_batch_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetBatchAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/batch/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/batch/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetBatchAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_batch_api_group`]
@@ -1398,14 +1398,14 @@ impl crate::Response for GetBatchAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_batch_v1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetBatchV1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/batch/v1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/batch/v1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetBatchV1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_batch_v1_api_resources`]
@@ -1454,14 +1454,14 @@ impl crate::Response for GetBatchV1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_batch_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetBatchV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/batch/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/batch/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetBatchV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_batch_v1beta1_api_resources`]
@@ -1510,14 +1510,14 @@ impl crate::Response for GetBatchV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_batch_v2alpha1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetBatchV2alpha1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/batch/v2alpha1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/batch/v2alpha1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetBatchV2alpha1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_batch_v2alpha1_api_resources`]
@@ -1566,14 +1566,14 @@ impl crate::Response for GetBatchV2alpha1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_certificates_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetCertificatesAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/certificates.k8s.io/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/certificates.k8s.io/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetCertificatesAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_certificates_api_group`]
@@ -1622,14 +1622,14 @@ impl crate::Response for GetCertificatesAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_certificates_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetCertificatesV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/certificates.k8s.io/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/certificates.k8s.io/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetCertificatesV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_certificates_v1beta1_api_resources`]
@@ -1678,14 +1678,14 @@ impl crate::Response for GetCertificatesV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_code_version(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetCodeVersionResponse>), crate::RequestError> {
-    let __url = "/version/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/version/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetCodeVersionResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_code_version`]
@@ -1734,14 +1734,14 @@ impl crate::Response for GetCodeVersionResponse {
 #[cfg(feature = "api")]
 pub fn get_coordination_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetCoordinationAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/coordination.k8s.io/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/coordination.k8s.io/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetCoordinationAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_coordination_api_group`]
@@ -1790,14 +1790,14 @@ impl crate::Response for GetCoordinationAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_coordination_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetCoordinationV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/coordination.k8s.io/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/coordination.k8s.io/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetCoordinationV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_coordination_v1beta1_api_resources`]
@@ -1846,14 +1846,14 @@ impl crate::Response for GetCoordinationV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_core_api_versions(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetCoreAPIVersionsResponse>), crate::RequestError> {
-    let __url = "/api/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/api/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetCoreAPIVersionsResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_core_api_versions`]
@@ -1902,14 +1902,14 @@ impl crate::Response for GetCoreAPIVersionsResponse {
 #[cfg(feature = "api")]
 pub fn get_core_v1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetCoreV1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/api/v1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/api/v1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetCoreV1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_core_v1_api_resources`]
@@ -1958,14 +1958,14 @@ impl crate::Response for GetCoreV1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_events_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetEventsAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/events.k8s.io/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/events.k8s.io/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetEventsAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_events_api_group`]
@@ -2014,14 +2014,14 @@ impl crate::Response for GetEventsAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_events_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetEventsV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/events.k8s.io/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/events.k8s.io/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetEventsV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_events_v1beta1_api_resources`]
@@ -2070,14 +2070,14 @@ impl crate::Response for GetEventsV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_extensions_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetExtensionsAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/extensions/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/extensions/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetExtensionsAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_extensions_api_group`]
@@ -2126,14 +2126,14 @@ impl crate::Response for GetExtensionsAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_extensions_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetExtensionsV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/extensions/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/extensions/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetExtensionsV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_extensions_v1beta1_api_resources`]
@@ -2182,14 +2182,14 @@ impl crate::Response for GetExtensionsV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_networking_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetNetworkingAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/networking.k8s.io/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/networking.k8s.io/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetNetworkingAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_networking_api_group`]
@@ -2238,14 +2238,14 @@ impl crate::Response for GetNetworkingAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_networking_v1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetNetworkingV1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/networking.k8s.io/v1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/networking.k8s.io/v1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetNetworkingV1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_networking_v1_api_resources`]
@@ -2294,14 +2294,14 @@ impl crate::Response for GetNetworkingV1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_policy_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetPolicyAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/policy/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/policy/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetPolicyAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_policy_api_group`]
@@ -2350,14 +2350,14 @@ impl crate::Response for GetPolicyAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_policy_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetPolicyV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/policy/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/policy/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetPolicyV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_policy_v1beta1_api_resources`]
@@ -2406,14 +2406,14 @@ impl crate::Response for GetPolicyV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_rbac_authorization_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetRbacAuthorizationAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/rbac.authorization.k8s.io/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/rbac.authorization.k8s.io/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetRbacAuthorizationAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_rbac_authorization_api_group`]
@@ -2462,14 +2462,14 @@ impl crate::Response for GetRbacAuthorizationAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_rbac_authorization_v1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetRbacAuthorizationV1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/rbac.authorization.k8s.io/v1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/rbac.authorization.k8s.io/v1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetRbacAuthorizationV1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_rbac_authorization_v1_api_resources`]
@@ -2518,14 +2518,14 @@ impl crate::Response for GetRbacAuthorizationV1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_rbac_authorization_v1alpha1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetRbacAuthorizationV1alpha1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/rbac.authorization.k8s.io/v1alpha1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/rbac.authorization.k8s.io/v1alpha1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetRbacAuthorizationV1alpha1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_rbac_authorization_v1alpha1_api_resources`]
@@ -2574,14 +2574,14 @@ impl crate::Response for GetRbacAuthorizationV1alpha1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_rbac_authorization_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetRbacAuthorizationV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/rbac.authorization.k8s.io/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/rbac.authorization.k8s.io/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetRbacAuthorizationV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_rbac_authorization_v1beta1_api_resources`]
@@ -2630,14 +2630,14 @@ impl crate::Response for GetRbacAuthorizationV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_scheduling_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetSchedulingAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/scheduling.k8s.io/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/scheduling.k8s.io/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetSchedulingAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_scheduling_api_group`]
@@ -2686,14 +2686,14 @@ impl crate::Response for GetSchedulingAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_scheduling_v1alpha1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetSchedulingV1alpha1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/scheduling.k8s.io/v1alpha1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/scheduling.k8s.io/v1alpha1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetSchedulingV1alpha1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_scheduling_v1alpha1_api_resources`]
@@ -2742,14 +2742,14 @@ impl crate::Response for GetSchedulingV1alpha1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_scheduling_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetSchedulingV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/scheduling.k8s.io/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/scheduling.k8s.io/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetSchedulingV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_scheduling_v1beta1_api_resources`]
@@ -2798,14 +2798,14 @@ impl crate::Response for GetSchedulingV1beta1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_settings_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetSettingsAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/settings.k8s.io/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/settings.k8s.io/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetSettingsAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_settings_api_group`]
@@ -2854,14 +2854,14 @@ impl crate::Response for GetSettingsAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_settings_v1alpha1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetSettingsV1alpha1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/settings.k8s.io/v1alpha1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/settings.k8s.io/v1alpha1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetSettingsV1alpha1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_settings_v1alpha1_api_resources`]
@@ -2910,14 +2910,14 @@ impl crate::Response for GetSettingsV1alpha1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_storage_api_group(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetStorageAPIGroupResponse>), crate::RequestError> {
-    let __url = "/apis/storage.k8s.io/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/storage.k8s.io/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetStorageAPIGroupResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_storage_api_group`]
@@ -2966,14 +2966,14 @@ impl crate::Response for GetStorageAPIGroupResponse {
 #[cfg(feature = "api")]
 pub fn get_storage_v1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetStorageV1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/storage.k8s.io/v1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/storage.k8s.io/v1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetStorageV1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_storage_v1_api_resources`]
@@ -3022,14 +3022,14 @@ impl crate::Response for GetStorageV1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_storage_v1alpha1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetStorageV1alpha1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/storage.k8s.io/v1alpha1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/storage.k8s.io/v1alpha1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetStorageV1alpha1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_storage_v1alpha1_api_resources`]
@@ -3078,14 +3078,14 @@ impl crate::Response for GetStorageV1alpha1APIResourcesResponse {
 #[cfg(feature = "api")]
 pub fn get_storage_v1beta1_api_resources(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<GetStorageV1beta1APIResourcesResponse>), crate::RequestError> {
-    let __url = "/apis/storage.k8s.io/v1beta1/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/apis/storage.k8s.io/v1beta1/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<GetStorageV1beta1APIResourcesResponse as Response>::try_from_parts` to parse the HTTP response body of [`get_storage_v1beta1_api_resources`]
@@ -3142,13 +3142,13 @@ pub fn log_file_handler(
     let __url = format!("/logs/{logpath}",
         logpath = crate::percent_encoding::percent_encode(logpath.as_bytes(), crate::percent_encoding2::PATH_SEGMENT_ENCODE_SET),
     );
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Owned(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<LogFileHandlerResponse as Response>::try_from_parts` to parse the HTTP response body of [`log_file_handler`]
@@ -3186,14 +3186,14 @@ impl crate::Response for LogFileHandlerResponse {
 #[cfg(feature = "api")]
 pub fn log_file_list_handler(
 ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<LogFileListHandlerResponse>), crate::RequestError> {
-    let __url = "/logs/".to_owned();
-
-    let __request = http::Request::get(__url);
-    let __body = vec![];
-    match __request.body(__body) {
-        Ok(request) => Ok((request, crate::ResponseBody::new)),
-        Err(err) => Err(crate::RequestError::Http(err)),
-    }
+    let __url = "/logs/";
+    let __request = crate::__build_request(
+        crate::http::Method::GET,
+        std::borrow::Cow::Borrowed(__url),
+        &[],
+        None,
+    )?;
+    Ok((__request, crate::ResponseBody::new))
 }
 
 /// Use `<LogFileListHandlerResponse as Response>::try_from_parts` to parse the HTTP response body of [`log_file_list_handler`]

@@ -39,17 +39,13 @@ impl Binding {
         let __url = format!("/api/v1/namespaces/{namespace}/bindings?",
             namespace = crate::percent_encoding::percent_encode(namespace.as_bytes(), crate::percent_encoding2::PATH_SEGMENT_ENCODE_SET),
         );
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        optional.__serialize(&mut __query_pairs);
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::post(__url);
-        let __body = serde_json::to_vec(body).map_err(crate::RequestError::Json)?;
-        let __request = __request.header(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static("application/json"));
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __request = crate::__build_request2(
+            crate::http::Method::POST,
+            __url,
+            &mut |__query_pairs| optional.__serialize(__query_pairs),
+            Some(("application/json", body)),
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
@@ -86,17 +82,13 @@ impl Binding {
             name = crate::percent_encoding::percent_encode(name.as_bytes(), crate::percent_encoding2::PATH_SEGMENT_ENCODE_SET),
             namespace = crate::percent_encoding::percent_encode(namespace.as_bytes(), crate::percent_encoding2::PATH_SEGMENT_ENCODE_SET),
         );
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        optional.__serialize(&mut __query_pairs);
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::post(__url);
-        let __body = serde_json::to_vec(body).map_err(crate::RequestError::Json)?;
-        let __request = __request.header(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static("application/json"));
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __request = crate::__build_request2(
+            crate::http::Method::POST,
+            __url,
+            &mut |__query_pairs| optional.__serialize(__query_pairs),
+            Some(("application/json", body)),
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 

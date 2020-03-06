@@ -1400,80 +1400,69 @@ pub fn write_operation(
 		if have_query_parameters {
 			write!(out, "?")?;
 		}
-		writeln!(out, r#"".to_owned();"#)?;
+		writeln!(out, r#"";"#)?;
+	}
+
+	if query_string_optional_parameter.is_some() {
+		writeln!(out, "{}    let __request = {}::__build_request2(", indent, crate_root)?;
+	}
+	else {
+		writeln!(out, "{}    let __request = {}::__build_request(", indent, crate_root)?;
+	}
+
+	let method = match operation.method {
+		swagger20::Method::Delete => "DELETE",
+		swagger20::Method::Get => "GET",
+		swagger20::Method::Patch => "PATCH",
+		swagger20::Method::Post => "POST",
+		swagger20::Method::Put => "PUT",
+	};
+	writeln!(out, "{}        {}::http::Method::{},", indent, crate_root, method)?;
+
+	match (have_path_parameters, query_string_optional_parameter.is_some()) {
+		(true, true) => writeln!(out, "{}        __url,", indent)?,
+		(true, false) => writeln!(out, "{}        std::borrow::Cow::Owned(__url),", indent)?,
+		(false, true) => writeln!(out, "{}        __url.to_owned(),", indent)?,
+		(false, false) => writeln!(out, "{}        std::borrow::Cow::Borrowed(__url),", indent)?,
 	}
 
 	if have_query_parameters {
-		writeln!(out, "{}    let mut __query_pairs = {}::url::form_urlencoded::Serializer::new(__url);", indent, crate_root)?;
 		if let Some((parameter_name, _, _)) = &query_string_optional_parameter {
-			writeln!(out, "{}    {}.__serialize(&mut __query_pairs);", indent, parameter_name)?;
+			writeln!(out, "{}        &mut |__query_pairs| {}.__serialize(__query_pairs),", indent, parameter_name)?;
 		}
 		else {
-			for (parameter_name, parameter_type, parameter) in &parameters {
-				if parameter.location == swagger20::ParameterLocation::Query {
-					if parameter.required {
-						match parameter.schema.kind {
-							swagger20::SchemaKind::Ty(swagger20::Type::Boolean) |
-							swagger20::SchemaKind::Ty(swagger20::Type::Integer { .. }) |
-							swagger20::SchemaKind::Ty(swagger20::Type::Number { .. }) =>
-								writeln!(out, r#"{}    __query_pairs.append_pair({:?}, &{}.to_string());"#, indent, parameter.name, parameter_name)?,
+			writeln!(out, "{}        &[", indent)?;
 
-							swagger20::SchemaKind::Ty(swagger20::Type::String { .. }) =>
-								writeln!(out, r#"{}    __query_pairs.append_pair({:?}, &{});"#, indent, parameter.name, parameter_name)?,
+			for (parameter_name, _, parameter) in &parameters {
+				if parameter.location != swagger20::ParameterLocation::Query {
+					continue;
+				}
 
-							_ => return Err(format!("parameter {} is in the query string but is a {:?}", parameter.name, parameter_type).into()),
-						}
-					}
-					else {
-						writeln!(out, "{}    if let Some({}) = {} {{", indent, parameter_name, parameter_name)?;
-						match parameter.schema.kind {
-							swagger20::SchemaKind::Ty(swagger20::Type::Boolean) |
-							swagger20::SchemaKind::Ty(swagger20::Type::Integer { .. }) |
-							swagger20::SchemaKind::Ty(swagger20::Type::Number { .. }) =>
-								writeln!(out, r#"{}        __query_pairs.append_pair({:?}, &{}.to_string());"#, indent, parameter.name, parameter_name)?,
-
-							swagger20::SchemaKind::Ty(swagger20::Type::String { .. }) =>
-								writeln!(out, r#"{}        __query_pairs.append_pair({:?}, {});"#, indent, parameter.name, parameter_name)?,
-
-							_ => return Err(format!("parameter {} is in the query string but is a {:?}", parameter.name, parameter_type).into()),
-						}
-						writeln!(out, "{}    }}", indent)?;
-					}
+				if parameter.required {
+					writeln!(out, r#"{}            ({:?}, Some({})),"#, indent, parameter.name, parameter_name)?;
+				}
+				else {
+					writeln!(out, r#"{}            ({:?}, {}.as_ref().map(|value| value as _)),"#, indent, parameter.name, parameter_name)?;
 				}
 			}
+
+			writeln!(out, "{}        ],", indent)?;
 		}
-		writeln!(out, "{}    let __url = __query_pairs.finish();", indent)?;
 	}
-	writeln!(out)?;
-
-	let method = match operation.method {
-		swagger20::Method::Delete => "delete",
-		swagger20::Method::Get => "get",
-		swagger20::Method::Patch => "patch",
-		swagger20::Method::Post => "post",
-		swagger20::Method::Put => "put",
-	};
-
-	writeln!(out, "{}    let __request = http::Request::{}(__url);", indent, method)?;
+	else {
+		writeln!(out, "{}        &[],", indent)?;
+	}
 
 	let body_parameter =
 		delete_optional_parameter.as_ref()
 		.or_else(|| parameters.iter().find(|(_, _, parameter)| parameter.location == swagger20::ParameterLocation::Body));
 
-	write!(out, "{}    let __body = ", indent)?;
 	if let Some((parameter_name, parameter_type, parameter)) = body_parameter {
-		if parameter.required {
-			if parameter_type.starts_with('&') {
-				writeln!(out, "serde_json::to_vec({}).map_err({}::RequestError::Json)?;", parameter_name, crate_root)?;
-			}
-			else {
-				writeln!(out, "serde_json::to_vec(&{}).map_err({}::RequestError::Json)?;", parameter_name, crate_root)?;
-			}
+		if !parameter.required {
+			return Err(format!("parameter {} is a body parameter but not required", parameter.name).into());
 		}
-		else {
-			writeln!(out)?;
-			writeln!(out, "{}.unwrap_or(Ok(vec![]), |value| serde_json::to_vec(value).map_err({}::RequestError::Json))?;", parameter_name, crate_root)?;
-		}
+
+		write!(out, "{}        Some((", indent)?;
 
 		let is_patch =
 			if let swagger20::SchemaKind::Ref(ref_path) = &parameter.schema.kind {
@@ -1484,25 +1473,31 @@ pub fn write_operation(
 			};
 		if is_patch {
 			let patch_type = get_rust_type(&parameter.schema.kind, replace_namespaces, crate_root)?;
-			writeln!(out, "{}    let __request = __request.header(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static(match {} {{", indent, parameter_name)?;
-			writeln!(out, r#"{}        {}::Json(_) => "application/json-patch+json","#, indent, patch_type)?;
-			writeln!(out, r#"{}        {}::Merge(_) => "application/merge-patch+json","#, indent, patch_type)?;
-			writeln!(out, r#"{}        {}::StrategicMerge(_) => "application/strategic-merge-patch+json","#, indent, patch_type)?;
-			writeln!(out, "{}    }}));", indent)?;
+			writeln!(out, "match {} {{", parameter_name)?;
+			writeln!(out, r#"{}            {}::Json(_) => "application/json-patch+json","#, indent, patch_type)?;
+			writeln!(out, r#"{}            {}::Merge(_) => "application/merge-patch+json","#, indent, patch_type)?;
+			writeln!(out, r#"{}            {}::StrategicMerge(_) => "application/strategic-merge-patch+json","#, indent, patch_type)?;
+			write!(out, "{}        }}, ", indent)?;
 		}
 		else {
-			writeln!(out, r#"{}    let __request = __request.header(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static("application/json"));"#, indent)?;
+			write!(out, r#""application/json", "#)?;
+		}
+
+		if parameter_type.starts_with('&') {
+			writeln!(out, "{})),", parameter_name)?;
+		}
+		else {
+			writeln!(out, "&{})),", parameter_name)?;
 		}
 	}
 	else {
-		writeln!(out, "vec![];")?;
+		writeln!(out, r#"{}        None,"#, indent)?;
 	}
 
+	writeln!(out, "{}    )?;", indent)?;
+
 	if operation_result_name.is_some() {
-		writeln!(out, "{}    match __request.body(__body) {{", indent)?;
-		writeln!(out, "{}        Ok(request) => Ok((request, {}::ResponseBody::new)),", indent, crate_root)?;
-		writeln!(out, "{}        Err(err) => Err({}::RequestError::Http(err)),", indent, crate_root)?;
-		writeln!(out, "{}    }}", indent)?;
+		writeln!(out, "{}    Ok((__request, {}::ResponseBody::new))", indent, crate_root)?;
 	}
 	else {
 		let is_common_response_type = match operation.responses {
@@ -1511,13 +1506,10 @@ pub fn write_operation(
 		};
 
 		if is_common_response_type {
-			writeln!(out, "{}    match __request.body(__body) {{", indent)?;
-			writeln!(out, "{}        Ok(request) => Ok((request, {}::ResponseBody::new)),", indent, crate_root)?;
-			writeln!(out, "{}        Err(err) => Err({}::RequestError::Http(err)),", indent, crate_root)?;
-			writeln!(out, "{}    }}", indent)?;
+			writeln!(out, "{}    Ok((__request, {}::ResponseBody::new))", indent, crate_root)?;
 		}
 		else {
-			writeln!(out, "{}    __request.body(__body).map_err({}::RequestError::Http)", indent, crate_root)?;
+			writeln!(out, "{}    Ok(__request)", indent)?;
 		}
 	}
 	writeln!(out, "{}}}", indent)?;

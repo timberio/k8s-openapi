@@ -399,9 +399,6 @@ pub fn version<T>(_: &T) -> &'static str where T: Resource {
 /// The type of errors returned by the Kubernetes API functions that prepare the HTTP request.
 #[derive(Debug)]
 pub enum RequestError {
-    /// An error from preparing the HTTP request.
-    Http(http::Error),
-
     /// An error while serializing a value into the JSON body of the HTTP request.
     Json(serde_json::Error),
 }
@@ -409,7 +406,6 @@ pub enum RequestError {
 impl std::fmt::Display for RequestError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            RequestError::Http(err) => write!(f, "{}", err),
             RequestError::Json(err) => write!(f, "{}", err),
         }
     }
@@ -418,7 +414,6 @@ impl std::fmt::Display for RequestError {
 impl std::error::Error for RequestError {
     fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
         match self {
-            RequestError::Http(err) => Some(err),
             RequestError::Json(err) => Some(err),
         }
     }
@@ -581,3 +576,87 @@ pub mod percent_encoding2 {
 #[cfg(feature = "v1_17")] pub use self::v1_17::*;
 
 include!(concat!(env!("OUT_DIR"), "/conditional_compilation_macros.rs"));
+
+/// This function is only exposed for use by the `k8s-openapi-derive` crate and is not part of the stable public API.
+#[doc(hidden)]
+#[inline(never)]
+pub fn __build_request(
+    method: http::Method,
+    url: std::borrow::Cow<'_, str>,
+    query_params: &[(&str, Option<&dyn ToString>)],
+    content_type_and_body: Option<(&'static str, &dyn erased_serde::Serialize)>,
+) -> Result<http::Request<Vec<u8>>, RequestError> {
+    let url =
+        if query_params.is_empty() {
+            url
+        }
+        else {
+            let mut query_pairs = url::form_urlencoded::Serializer::new(url.into_owned());
+            for (name, value) in query_params {
+                if let Some(value) = value {
+                    query_pairs.append_pair(name, &value.to_string());
+                }
+            }
+            std::borrow::Cow::Owned(query_pairs.finish())
+        };
+    let url =
+        url.parse().unwrap_or_else(|err|
+            panic!(
+                "Could not parse URL {:?} as an http::Uri: {}\n\
+                 This is a bug in k8s-openapi. Please open an issue at https://github.com/Arnavion/k8s-openapi\n\
+                ",
+                url, err));
+
+    let mut request = match content_type_and_body {
+        Some((content_type, body)) => {
+            let body = serde_json::to_vec(body).map_err(RequestError::Json)?;
+            let mut request = http::Request::new(body);
+            request.headers_mut().insert(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static(content_type));
+            request
+        },
+
+        None => http::Request::new(vec![]),
+    };
+
+    *request.method_mut() = method;
+    *request.uri_mut() = url;
+
+    Ok(request)
+}
+
+/// This function is only exposed for use by the `k8s-openapi-derive` crate and is not part of the stable public API.
+#[doc(hidden)]
+#[inline(never)]
+pub fn __build_request2(
+    method: http::Method,
+    url: String,
+    query_params: &mut dyn FnMut(&mut url::form_urlencoded::Serializer<'_, String>),
+    content_type_and_body: Option<(&'static str, &dyn erased_serde::Serialize)>,
+) -> Result<http::Request<Vec<u8>>, RequestError> {
+    let mut query_pairs = url::form_urlencoded::Serializer::new(url);
+    query_params(&mut query_pairs);
+    let url = query_pairs.finish();
+    let url =
+        url.parse().unwrap_or_else(|err|
+            panic!(
+                "Could not parse URL {:?} as an http::Uri: {}\n\
+                 This is a bug in k8s-openapi. Please open an issue at https://github.com/Arnavion/k8s-openapi\n\
+                ",
+                url, err));
+
+    let mut request = match content_type_and_body {
+        Some((content_type, body)) => {
+            let body = serde_json::to_vec(body).map_err(RequestError::Json)?;
+            let mut request = http::Request::new(body);
+            request.headers_mut().insert(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static(content_type));
+            request
+        },
+
+        None => http::Request::new(vec![]),
+    };
+
+    *request.method_mut() = method;
+    *request.uri_mut() = url;
+
+    Ok(request)
+}

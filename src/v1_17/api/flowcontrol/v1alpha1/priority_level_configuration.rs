@@ -34,18 +34,14 @@ impl PriorityLevelConfiguration {
         body: &crate::api::flowcontrol::v1alpha1::PriorityLevelConfiguration,
         optional: crate::CreateOptional<'_>,
     ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<crate::CreateResponse<Self>>), crate::RequestError> {
-        let __url = "/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations?".to_owned();
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        optional.__serialize(&mut __query_pairs);
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::post(__url);
-        let __body = serde_json::to_vec(body).map_err(crate::RequestError::Json)?;
-        let __request = __request.header(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static("application/json"));
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __url = "/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations?";
+        let __request = crate::__build_request2(
+            crate::http::Method::POST,
+            __url.to_owned(),
+            &mut |__query_pairs| optional.__serialize(__query_pairs),
+            Some(("application/json", body)),
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
@@ -70,18 +66,14 @@ impl PriorityLevelConfiguration {
         delete_optional: crate::DeleteOptional<'_>,
         list_optional: crate::ListOptional<'_>,
     ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<crate::DeleteResponse<crate::List<Self>>>), crate::RequestError> {
-        let __url = "/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations?".to_owned();
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        list_optional.__serialize(&mut __query_pairs);
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::delete(__url);
-        let __body = serde_json::to_vec(&delete_optional).map_err(crate::RequestError::Json)?;
-        let __request = __request.header(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static("application/json"));
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __url = "/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations?";
+        let __request = crate::__build_request2(
+            crate::http::Method::DELETE,
+            __url.to_owned(),
+            &mut |__query_pairs| list_optional.__serialize(__query_pairs),
+            Some(("application/json", &delete_optional)),
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
@@ -109,14 +101,13 @@ impl PriorityLevelConfiguration {
         let __url = format!("/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations/{name}",
             name = crate::percent_encoding::percent_encode(name.as_bytes(), crate::percent_encoding2::PATH_SEGMENT_ENCODE_SET),
         );
-
-        let __request = http::Request::delete(__url);
-        let __body = serde_json::to_vec(&optional).map_err(crate::RequestError::Json)?;
-        let __request = __request.header(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static("application/json"));
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __request = crate::__build_request(
+            crate::http::Method::DELETE,
+            std::borrow::Cow::Owned(__url),
+            &[],
+            Some(("application/json", &optional)),
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
@@ -138,17 +129,14 @@ impl PriorityLevelConfiguration {
     pub fn list_priority_level_configuration(
         optional: crate::ListOptional<'_>,
     ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<crate::ListResponse<Self>>), crate::RequestError> {
-        let __url = "/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations?".to_owned();
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        optional.__serialize(&mut __query_pairs);
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::get(__url);
-        let __body = vec![];
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __url = "/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations?";
+        let __request = crate::__build_request2(
+            crate::http::Method::GET,
+            __url.to_owned(),
+            &mut |__query_pairs| optional.__serialize(__query_pairs),
+            None,
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
@@ -179,21 +167,17 @@ impl PriorityLevelConfiguration {
         let __url = format!("/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations/{name}?",
             name = crate::percent_encoding::percent_encode(name.as_bytes(), crate::percent_encoding2::PATH_SEGMENT_ENCODE_SET),
         );
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        optional.__serialize(&mut __query_pairs);
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::patch(__url);
-        let __body = serde_json::to_vec(body).map_err(crate::RequestError::Json)?;
-        let __request = __request.header(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static(match body {
-            crate::apimachinery::pkg::apis::meta::v1::Patch::Json(_) => "application/json-patch+json",
-            crate::apimachinery::pkg::apis::meta::v1::Patch::Merge(_) => "application/merge-patch+json",
-            crate::apimachinery::pkg::apis::meta::v1::Patch::StrategicMerge(_) => "application/strategic-merge-patch+json",
-        }));
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __request = crate::__build_request2(
+            crate::http::Method::PATCH,
+            __url,
+            &mut |__query_pairs| optional.__serialize(__query_pairs),
+            Some((match body {
+                crate::apimachinery::pkg::apis::meta::v1::Patch::Json(_) => "application/json-patch+json",
+                crate::apimachinery::pkg::apis::meta::v1::Patch::Merge(_) => "application/merge-patch+json",
+                crate::apimachinery::pkg::apis::meta::v1::Patch::StrategicMerge(_) => "application/strategic-merge-patch+json",
+            }, body)),
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
@@ -224,21 +208,17 @@ impl PriorityLevelConfiguration {
         let __url = format!("/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations/{name}/status?",
             name = crate::percent_encoding::percent_encode(name.as_bytes(), crate::percent_encoding2::PATH_SEGMENT_ENCODE_SET),
         );
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        optional.__serialize(&mut __query_pairs);
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::patch(__url);
-        let __body = serde_json::to_vec(body).map_err(crate::RequestError::Json)?;
-        let __request = __request.header(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static(match body {
-            crate::apimachinery::pkg::apis::meta::v1::Patch::Json(_) => "application/json-patch+json",
-            crate::apimachinery::pkg::apis::meta::v1::Patch::Merge(_) => "application/merge-patch+json",
-            crate::apimachinery::pkg::apis::meta::v1::Patch::StrategicMerge(_) => "application/strategic-merge-patch+json",
-        }));
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __request = crate::__build_request2(
+            crate::http::Method::PATCH,
+            __url,
+            &mut |__query_pairs| optional.__serialize(__query_pairs),
+            Some((match body {
+                crate::apimachinery::pkg::apis::meta::v1::Patch::Json(_) => "application/json-patch+json",
+                crate::apimachinery::pkg::apis::meta::v1::Patch::Merge(_) => "application/merge-patch+json",
+                crate::apimachinery::pkg::apis::meta::v1::Patch::StrategicMerge(_) => "application/strategic-merge-patch+json",
+            }, body)),
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
@@ -271,24 +251,17 @@ impl PriorityLevelConfiguration {
         let __url = format!("/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations/{name}?",
             name = crate::percent_encoding::percent_encode(name.as_bytes(), crate::percent_encoding2::PATH_SEGMENT_ENCODE_SET),
         );
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        if let Some(exact) = exact {
-            __query_pairs.append_pair("exact", &exact.to_string());
-        }
-        if let Some(export) = export {
-            __query_pairs.append_pair("export", &export.to_string());
-        }
-        if let Some(pretty) = pretty {
-            __query_pairs.append_pair("pretty", pretty);
-        }
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::get(__url);
-        let __body = vec![];
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __request = crate::__build_request(
+            crate::http::Method::GET,
+            std::borrow::Cow::Owned(__url),
+            &[
+                ("exact", exact.as_ref().map(|value| value as _)),
+                ("export", export.as_ref().map(|value| value as _)),
+                ("pretty", pretty.as_ref().map(|value| value as _)),
+            ],
+            None,
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
@@ -369,18 +342,15 @@ impl PriorityLevelConfiguration {
         let __url = format!("/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations/{name}/status?",
             name = crate::percent_encoding::percent_encode(name.as_bytes(), crate::percent_encoding2::PATH_SEGMENT_ENCODE_SET),
         );
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        if let Some(pretty) = pretty {
-            __query_pairs.append_pair("pretty", pretty);
-        }
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::get(__url);
-        let __body = vec![];
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __request = crate::__build_request(
+            crate::http::Method::GET,
+            std::borrow::Cow::Owned(__url),
+            &[
+                ("pretty", pretty.as_ref().map(|value| value as _)),
+            ],
+            None,
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
@@ -457,17 +427,13 @@ impl PriorityLevelConfiguration {
         let __url = format!("/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations/{name}?",
             name = crate::percent_encoding::percent_encode(name.as_bytes(), crate::percent_encoding2::PATH_SEGMENT_ENCODE_SET),
         );
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        optional.__serialize(&mut __query_pairs);
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::put(__url);
-        let __body = serde_json::to_vec(body).map_err(crate::RequestError::Json)?;
-        let __request = __request.header(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static("application/json"));
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __request = crate::__build_request2(
+            crate::http::Method::PUT,
+            __url,
+            &mut |__query_pairs| optional.__serialize(__query_pairs),
+            Some(("application/json", body)),
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
@@ -498,17 +464,13 @@ impl PriorityLevelConfiguration {
         let __url = format!("/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations/{name}/status?",
             name = crate::percent_encoding::percent_encode(name.as_bytes(), crate::percent_encoding2::PATH_SEGMENT_ENCODE_SET),
         );
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        optional.__serialize(&mut __query_pairs);
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::put(__url);
-        let __body = serde_json::to_vec(body).map_err(crate::RequestError::Json)?;
-        let __request = __request.header(http::header::CONTENT_TYPE, http::header::HeaderValue::from_static("application/json"));
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __request = crate::__build_request2(
+            crate::http::Method::PUT,
+            __url,
+            &mut |__query_pairs| optional.__serialize(__query_pairs),
+            Some(("application/json", body)),
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
@@ -530,17 +492,14 @@ impl PriorityLevelConfiguration {
     pub fn watch_priority_level_configuration(
         optional: crate::WatchOptional<'_>,
     ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<crate::WatchResponse<Self>>), crate::RequestError> {
-        let __url = "/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations?".to_owned();
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        optional.__serialize(&mut __query_pairs);
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::get(__url);
-        let __body = vec![];
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __url = "/apis/flowcontrol.apiserver.k8s.io/v1alpha1/prioritylevelconfigurations?";
+        let __request = crate::__build_request2(
+            crate::http::Method::GET,
+            __url.to_owned(),
+            &mut |__query_pairs| optional.__serialize(__query_pairs),
+            None,
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 

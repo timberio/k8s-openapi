@@ -30,17 +30,14 @@ impl ComponentStatus {
     pub fn list_component_status(
         optional: crate::ListOptional<'_>,
     ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<crate::ListResponse<Self>>), crate::RequestError> {
-        let __url = "/api/v1/componentstatuses?".to_owned();
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        optional.__serialize(&mut __query_pairs);
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::get(__url);
-        let __body = vec![];
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __url = "/api/v1/componentstatuses?";
+        let __request = crate::__build_request2(
+            crate::http::Method::GET,
+            __url.to_owned(),
+            &mut |__query_pairs| optional.__serialize(__query_pairs),
+            None,
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
@@ -71,18 +68,15 @@ impl ComponentStatus {
         let __url = format!("/api/v1/componentstatuses/{name}?",
             name = crate::percent_encoding::percent_encode(name.as_bytes(), crate::percent_encoding2::PATH_SEGMENT_ENCODE_SET),
         );
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        if let Some(pretty) = pretty {
-            __query_pairs.append_pair("pretty", pretty);
-        }
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::get(__url);
-        let __body = vec![];
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __request = crate::__build_request(
+            crate::http::Method::GET,
+            std::borrow::Cow::Owned(__url),
+            &[
+                ("pretty", pretty.as_ref().map(|value| value as _)),
+            ],
+            None,
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
@@ -150,17 +144,14 @@ impl ComponentStatus {
     pub fn watch_component_status(
         optional: crate::WatchOptional<'_>,
     ) -> Result<(http::Request<Vec<u8>>, fn(http::StatusCode) -> crate::ResponseBody<crate::WatchResponse<Self>>), crate::RequestError> {
-        let __url = "/api/v1/componentstatuses?".to_owned();
-        let mut __query_pairs = crate::url::form_urlencoded::Serializer::new(__url);
-        optional.__serialize(&mut __query_pairs);
-        let __url = __query_pairs.finish();
-
-        let __request = http::Request::get(__url);
-        let __body = vec![];
-        match __request.body(__body) {
-            Ok(request) => Ok((request, crate::ResponseBody::new)),
-            Err(err) => Err(crate::RequestError::Http(err)),
-        }
+        let __url = "/api/v1/componentstatuses?";
+        let __request = crate::__build_request2(
+            crate::http::Method::GET,
+            __url.to_owned(),
+            &mut |__query_pairs| optional.__serialize(__query_pairs),
+            None,
+        )?;
+        Ok((__request, crate::ResponseBody::new))
     }
 }
 
