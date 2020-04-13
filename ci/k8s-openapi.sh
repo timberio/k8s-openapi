@@ -12,6 +12,10 @@ if [ "$WITHOUT_API_FEATURE" = 'yes' ]; then
 	FEATURES="--no-default-features $FEATURES"
 fi
 
+pushd k8s-openapi-derive-impl
+RUST_BACKTRACE=full cargo build --release --target wasm32-unknown-unknown
+popd
+
 case "$OP" in
 	'clippy')
 		cargo clippy $FEATURES -- -D warnings

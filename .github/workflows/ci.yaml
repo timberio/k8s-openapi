@@ -73,6 +73,7 @@ jobs:
       matrix:
         op:
         - 'clippy'
+        - 'clippy-impl'
 
     steps:
     - uses: 'actions/checkout@v2'

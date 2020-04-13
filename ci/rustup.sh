@@ -13,3 +13,5 @@ rustup update --no-self-update stable
 rustup default stable
 
 rustup component add clippy
+
+rustup target add wasm32-unknown-unknown

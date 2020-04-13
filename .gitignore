@@ -5,6 +5,8 @@
 /k8s-openapi-codegen-common/target
 /k8s-openapi-derive/Cargo.lock
 /k8s-openapi-derive/target
+/k8s-openapi-derive-impl/Cargo.lock
+/k8s-openapi-derive-impl/target
 /k8s-openapi-tests/Cargo.lock
 /k8s-openapi-tests/target*
 /target

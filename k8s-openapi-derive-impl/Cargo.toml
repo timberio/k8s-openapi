@@ -1,10 +1,10 @@
 [package]
-name = "k8s-openapi-derive"
+name = "k8s-openapi-derive-impl"
 version = "0.7.1"
 license = "Apache-2.0"
 authors = ["Arnavion <me@arnavion.dev>"]
 categories = ["api-bindings", "web-programming::http-client"]
-description = "Proc macros for the Kubernetes client API"
+description = "Custom derives for the Kubernetes client API"
 documentation = "https://arnavion.github.io/k8s-openapi/v0.7.x/k8s_openapi_derive/"
 edition = "2018"
 keywords = ["client", "kubernetes", "k8s", "http"]
@@ -18,7 +18,14 @@ include = [
 ]
 
 [dependencies]
-watt = "0.3"
+http = "0.2"
+k8s-openapi-codegen-common = { version = "=0.7.0", path = "../k8s-openapi-codegen-common" }
+proc-macro2 = "1"
+quote = "1"
+syn = { version = "1", features = ["extra-traits"] }
 
 [lib]
-proc-macro = true
+crate-type = ["cdylib"]
+
+[patch.crates-io]
+proc-macro2 = { git = "https://github.com/dtolnay/watt" }
